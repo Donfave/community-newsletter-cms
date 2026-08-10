@@ -1,0 +1,86 @@
+/* Community Voice Admin */
+
+#header {
+    background: #111827;
+}
+
+#branding h1 {
+    color: white;
+    font-weight: 700;
+}
+
+#user-tools {
+    color: #d1d5db;
+}
+
+#user-tools a {
+    color: #93c5fd;
+}
+
+/* Page titles */
+
+#content h1 {
+    color: #111827;
+}
+
+/* Module headings */
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: #2563eb;
+    color: white;
+}
+
+/* Links */
+
+a:link,
+a:visited {
+    color: #2563eb;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+/* Buttons */
+
+.button,
+input[type="submit"],
+.submit-row input,
+a.button {
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: #1d4ed8;
+}
+
+/* Add button */
+
+.object-tools a {
+    background: #2563eb;
+    border-radius: 6px;
+}
+
+.object-tools a:hover {
+    background: #1d4ed8;
+}
+
+/* Selected rows */
+
+tr.selected {
+    background: #eff6ff;
+}
+
+/* Dashboard modules */
+
+.module {
+    border-radius: 8px;
+    overflow: hidden;
+}

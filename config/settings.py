@@ -10,25 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+"""
+Django settings for config project.
+"""
+
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY
 SECRET_KEY = 'django-insecure-%xeg97=20wd#tc*(km%6kyxubspj@a7rxr*3%c^^w5o=7zgo^q'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
-# Application definition
+# APPLICATIONS
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,12 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'newsletter',
 
+    'newsletter',
 ]
+
+
+# MIDDLEWARE
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,13 +55,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# URL CONFIGURATION
+
 ROOT_URLCONF = 'config.urls'
+
+
+# TEMPLATES
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -68,11 +79,13 @@ TEMPLATES = [
     },
 ]
 
+
+# WSGI
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.1/ref/settings/#databases
+# DATABASE
 
 DATABASES = {
     'default': {
@@ -82,8 +95,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
+# PASSWORD VALIDATION
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,8 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/6.1/topics/i18n/
+# INTERNATIONALIZATION
 
 LANGUAGE_CODE = 'en-us'
 
@@ -113,17 +124,24 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.1/howto/static-files/
+# STATIC FILES
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+# DEFAULT PRIMARY KEY
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EMAIL
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
