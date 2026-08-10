@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Voice</title>
+    <link rel="stylesheet" href="{% static 'newsletter/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div>
+            <h1>Community Voice</h1>
+            <p>Stories, updates and news from our community</p>
+        </div>
+
+        <a href="/admin/" class="admin-link">Admin</a>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="hero">
+        <h2>Latest Newsletters</h2>
+        <p>Stay informed with the latest community updates.</p>
+
+        <form method="GET" class="search-form">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search newsletters..."
+                value="{{ query }}"
+            >
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <section class="posts">
+
+        {% for post in posts %}
+
+            <article class="post">
+
+                <p class="category">COMMUNITY NEWS</p>
+
+                <h2>
+                    <a href="{% url 'post_detail' post.id %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+
+                <p class="meta">
+                    By {{ post.author }} ·
+                    {{ post.created_at|date:"F j, Y" }}
+                </p>
+
+                <p>
+                    {{ post.content|truncatewords:30 }}
+                </p>
+
+                <a
+                    href="{% url 'post_detail' post.id %}"
+                    class="read-more"
+                >
+                    Read Newsletter →
+                </a>
+
+            </article>
+
+        {% empty %}
+
+            <div class="empty">
+                <h3>No newsletters found</h3>
+                <p>Try another search.</p>
+            </div>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Community Voice · Community Newsletter CMS</p>
+</footer>
+
+</body>
+</html>

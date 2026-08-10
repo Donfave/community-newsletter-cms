@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }} - Community Voice</title>
+    <link rel="stylesheet" href="{% static 'newsletter/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>Community Voice</h1>
+    <p>Your community newsletter</p>
+</header>
+
+<div class="container">
+
+    <article class="post">
+        <h2>{{ post.title }}</h2>
+
+        <p class="meta">
+            By {{ post.author }} · {{ post.created_at|date:"F j, Y" }}
+        </p>
+
+        <p>{{ post.content }}</p>
+
+        <a href="/">← Back to newsletters</a>
+    </article>
+
+</div>
+
+</body>
+</html>
